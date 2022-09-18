@@ -9,50 +9,53 @@ public class MergeSort
 	void merge(int arr[], int l, int m, int r)
 	{
 		// Find sizes of two subarrays to be merged
-		int n1 = m - l + 1;
-		int n2 = r - m;
+		int len1 = m - l + 1;
+		int len2 = r - m;
 
 		/* Create temp arrays */
-		int L[] = new int[n1];
-		int R[] = new int[n2];
+		int L[] = new int[len1];
+		int R[] = new int[len2];
 
-		/*Copy data to temp arrays*/
-		for (int i = 0; i < n1; ++i)
-			L[i] = arr[l + i];
-		for (int j = 0; j < n2; ++j)
-			R[j] = arr[m + 1 + j];
+		
+		int k=l;
+		for (int i = 0; i < len1; i++)
+		{
+			L[i] = arr[k++];
+		}
+		
+		k=m+1;
+		for (int i = 0; i < len2; i++)
+		{
+			R[i] = arr[k++];
+		}
 
 		/* Merge the temp arrays */
 
 		// Initial indexes of first and second subarrays
-		int i = 0, j = 0;
+		int index1 = 0, index2 = 0;
 
 		// Initial index of merged subarray array
-		int k = l;
-		while (i < n1 && j < n2) {
-			if (L[i] <= R[j]) {
-				arr[k] = L[i];
-				i++;
+		 k = l;
+		while (index1 < len1 && index2 < len2) 
+		{
+			if (L[index1] <= R[index2]) 
+			{
+				arr[k++] = L[index1++];
 			}
-			else {
-				arr[k] = R[j];
-				j++;
+			else 
+			{
+				arr[k++] = R[index2++];
 			}
-			k++;
 		}
 
 		/* Copy remaining elements of L[] if any */
-		while (i < n1) {
-			arr[k] = L[i];
-			i++;
-			k++;
+		while (index1 < len1) {
+			arr[k++] = L[index1++];
 		}
 
 		/* Copy remaining elements of R[] if any */
-		while (j < n2) {
-			arr[k] = R[j];
-			j++;
-			k++;
+		while (index2 < len2) {
+			arr[k++] = R[index2++];
 		}
 	}
 
